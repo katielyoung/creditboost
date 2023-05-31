@@ -137,7 +137,7 @@ const CreateProfile = () => {
       console.log("Submitting profile!");
 
       // Navigate to created profile!
-      navigate("/profile")
+      navigate("/login")
     }
   };
 

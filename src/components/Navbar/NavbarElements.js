@@ -19,6 +19,24 @@ export const NavLink = styled(Link)`
   padding: 0 1rem;
   height: 100%;
   cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  &.active {
+    color: #4d4dff;
+  }
+`;
+
+export const LogoutBtn = styled.button`
+  color: #9DA0AA;
+  padding: 0 1rem;
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  height: 100%;
+  cursor: pointer;
   &.active {
     color: #4d4dff;
   }

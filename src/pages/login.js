@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "./AuthContext";
 
 // https://www.geeksforgeeks.org/how-to-develop-user-registration-form-in-reactjs/
 const Login = () => {
   // States for registration
+  const { loginStatus, setLoginStatus } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -33,18 +35,23 @@ const Login = () => {
       setSubmitted(true);
       setError(false);
 
+      // Verify user is in the database
+      const url = `http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/users/${email}`
       // fetch("http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/users", requestOptions);
       // .then((response) => response.json())
       // .then((data) => this.setState({ postId: data.id }));
-      console.log("Submitting initial user registration!");
 
-      const userId = 2; // temporary until backend returns id
+      setLoginStatus("true");
+      console.log("Logging in!");
 
+      
       // Set user (userId) from POST
+      const userId = 2; // temporary until backend returns id
       localStorage.setItem("user", userId);
 
-      // Route change to create profile
-      navigate("/create_profile");
+      // Route change to home
+      navigate("/");
+
     }
   };
 
@@ -79,7 +86,7 @@ const Login = () => {
   return (
     <div className="regform">
       <div>
-        <h1>User Registration</h1>
+        <h1>User Login</h1>
       </div>
 
       {/* Calling to the methods */}

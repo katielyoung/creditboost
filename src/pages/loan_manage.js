@@ -1,39 +1,17 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import AuthContext from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 
 // https://www.geeksforgeeks.org/how-to-develop-user-registration-form-in-reactjs/
 const LoanManage = () => {
   // States for registration
-  const [loginStatus, setLoginStatus] = useState(false);
+  const loginStatus = useContext(AuthContext);
   const [loanAmount, setLoanAmount] = useState("");
   const [numInstallments, setNumInstallments] = useState("");
 
   // States for checking the errors
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
-
-  const getLoginStatus = () => {
-    const userId = localStorage.getItem("user");
-    if (userId != null) {
-      setLoginStatus(true);
-    } else {
-      setLoginStatus(false);
-    }
-  };
-
-  useEffect(() => {
-    getLoginStatus();
-  }, []);
-
-  window.addEventListener("beforeunload", (event) => {
-    getLoginStatus();
-    console.log("API call before page reload");
-  });
-
-  window.addEventListener("unload", (event) => {
-    getLoginStatus();
-    console.log("API call after page reload");
-  });
 
   // Handling the loanAmount change
   const handleLoanAmount = (e) => {
@@ -111,7 +89,7 @@ const LoanManage = () => {
       <div>
         <h1>User Registration</h1>
       </div>
-      {loginStatus ? (
+      {loginStatus === "true" ? (
         <div>
           {/* Calling to the methods */}
           <div className="messages">
