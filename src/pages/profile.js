@@ -33,7 +33,6 @@ const Profile = () => {
           })
           .catch((error) => {
             console.error(error);
-            setGotData(true); // TEMPORARY
           });
       }
     }
@@ -60,16 +59,16 @@ const Profile = () => {
         <div>
           {gotData ? (
             <div>
-              <p>First Name: {dummyData.first_name}</p>
-              <p>Last Name: {dummyData.last_name}</p>
-              <p>Date of Birth: {dummyData.date_of_birth}</p>
-              <p>Phone Number: {dummyData.phone}</p>
-              <p>Last 4 digits of SSN: {dummyData.ssn_last_four_digits}</p>
-              <p>Bank Account Number: {dummyData.bank_account}</p>
-              <p>Bank Routing Number: {dummyData.bank_routing}</p>
-              <p>Bank Name: {dummyData.bank_name}</p>
-              <p>Current Credit Score: {dummyData.curr_credit_score}</p>
-              <p>Total Number of Open Loans: {dummyData.total_num_open_loan}</p>
+              <p>First Name: {data.first_name}</p>
+              <p>Last Name: {data.last_name}</p>
+              <p>Date of Birth: {data.date_of_birth}</p>
+              <p>Phone Number: {data.phone}</p>
+              <p>Last 4 digits of SSN: {data.ssn_last_four_digits}</p>
+              <p>Bank Account Number: {data.bank_account}</p>
+              <p>Bank Routing Number: {data.bank_routing}</p>
+              <p>Bank Name: {data.bank_name}</p>
+              <p>Current Credit Score: {data.curr_credit_score}</p>
+              <p>Total Number of Open Loans: {data.total_num_open_loan}</p>
             </div>
           ) : (
             <h4>Loading...</h4>

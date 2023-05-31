@@ -46,7 +46,7 @@ const Login = () => {
 
       
       // Set user (userId) from POST
-      const userId = 2; // temporary until backend returns id
+      const userId = 4; // temporary until backend returns id
       localStorage.setItem("user", userId);
 
       // Route change to home
