@@ -11,12 +11,6 @@ const Signup = () => {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
 
-  var userData = {
-    username: "",
-    password: "",
-    email: "",
-  };
-
   // Handling the name change
   const handleName = (e) => {
     setName(e.target.value);
