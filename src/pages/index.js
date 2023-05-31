@@ -16,7 +16,7 @@ const About = styled.p`
 
 const Home = () => {
   return (
-    <div class="container">
+    <div className="container">
       <Title>Build your credit score!</Title>
       <About>
         Unlock your financial potential with CreditBoost - the key to a brighter
