@@ -11,6 +11,11 @@ import Login from "./pages/login";
 import CreateProfile from "./pages/create_profile";
 
 function App() {
+  window.addEventListener("beforeunload", (event) => {
+    localStorage.clear()
+    console.log("Clear local storage");
+  });
+
   return (
     <div className = "homepage">
       <Router>

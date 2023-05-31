@@ -59,6 +59,7 @@ const Signup = () => {
 
       // Set user (userId) from POST
       localStorage.setItem("user", userId);
+      localStorage.setItem("username", name)
 
       // Route change to create profile
       navigate("/create_profile");
