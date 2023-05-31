@@ -1,13 +1,17 @@
 import React, { useContext } from "react";
 import { LogoutBtn, Nav, NavLink, NavMenu } from "./NavbarElements";
+import { useNavigate } from "react-router-dom";
 import AuthContext from "../../pages/AuthContext";
 
 const Navbar = () => {
 //   const [loginStatus, setLoginStatus] = useState(false);
   const { loginStatus, setLoginStatus } = useContext(AuthContext)
 
+  let navigate = useNavigate();
   const logoutOp = (e) => {
-    
+    setLoginStatus("false");
+    navigate("/");
+    localStorage.clear();
   };
 
   return (

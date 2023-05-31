@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 // https://www.geeksforgeeks.org/how-to-develop-user-registration-form-in-reactjs/
 const LoanManage = () => {
   // States for registration
-  const loginStatus = useContext(AuthContext);
+  const { loginStatus, setLoginStatus } = useContext(AuthContext);
   const [loanAmount, setLoanAmount] = useState("");
   const [numInstallments, setNumInstallments] = useState("");
 
