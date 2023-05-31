@@ -50,7 +50,7 @@ const Signup = () => {
           email: email,
         }),
       };
-      // fetch("ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/users", requestOptions);
+      // fetch("http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/users", requestOptions);
       // .then((response) => response.json())
       // .then((data) => this.setState({ postId: data.id }));
       console.log("Submitting initial user registration!");

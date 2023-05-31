@@ -131,7 +131,7 @@ const CreateProfile = () => {
           total_num_open_loan : 0
         }),
       };
-      // fetch("ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/profiles", requestOptions);
+      // fetch("http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/profiles", requestOptions);
       // .then((response) => response.json())
       // .then((data) => this.setState({ postId: data.id }));
       console.log("Submitting profile!");
