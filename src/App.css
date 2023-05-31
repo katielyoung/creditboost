@@ -119,6 +119,15 @@ h1, h2, h3, h4, p, th, td {
   padding: 20px;
 }
 
+.userprofile button {
+  background-color: #893168;
+  border: 1px solid #893168;
+  color: #F9FAFB;
+  justify-content: center;
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+}
+
 .loanmanage {
   margin: auto;
   padding: 20px;

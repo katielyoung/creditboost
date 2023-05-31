@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import AuthContext from "./AuthContext";
 
 const Profile = () => {
@@ -43,6 +44,11 @@ const Profile = () => {
     getData();
   });
 
+  let navigate = useNavigate()
+  const updateProfileLink = () => {
+    navigate("/update_profile");
+  }
+
   window.addEventListener("beforeunload", (event) => {
     getData();
     console.log("API call before page reload");
@@ -70,6 +76,7 @@ const Profile = () => {
               <p>Bank Name: {data.bank_name}</p>
               <p>Current Credit Score: {data.curr_credit_score}</p>
               <p>Total Number of Open Loans: {data.total_num_open_loan}</p>
+              <button className="btn" onClick={updateProfileLink}>Update Profile</button>
             </div>
           ) : (
             <h4>Loading...</h4>

@@ -10,6 +10,7 @@ import Signup from "./pages/signup";
 import Login from "./pages/login";
 import CreateProfile from "./pages/create_profile";
 import LoanStatus from "./pages/loan_status";
+import UpdateProfile from "./pages/update_profile";
 
 function App() {
   const [loginStatus, setLoginStatus] = useState("false")
@@ -32,6 +33,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/create_profile" element={<CreateProfile />} />
             <Route path="/loan_status" element={<LoanStatus />} />
+            <Route path="/update_profile" element={<UpdateProfile />} />
           </Routes>
         </Router>
       </div>

@@ -9,6 +9,7 @@ const LoanStatus = () => {
       initial_loan_amnt: 1234.25,
       num_installments: 5,
       amt_per_installment: 246.85,
+      num_installments_left: 5,
       total_amt_left: 1234.25,
     },
     {
@@ -17,6 +18,7 @@ const LoanStatus = () => {
       initial_loan_amnt: 2345.2,
       num_installments: 10,
       amt_per_installment: 234.52,
+      num_installments_left: 8,
       total_amt_left: 1876.16,
     },
   ];
@@ -24,9 +26,10 @@ const LoanStatus = () => {
   const { loginStatus } = useContext(AuthContext);
   const [data, setData] = useState("Loading...");
   const [gotData, setGotData] = useState(false);
+  const [showLoan, setShowLoan] = useState(false);
 
   const getData = () => {
-    if (loginStatus) {
+    if (loginStatus && !gotData) {
       const userId = localStorage.getItem("user");
       if (userId != null) {
         const url = `http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/loans/${userId}`;
@@ -43,6 +46,10 @@ const LoanStatus = () => {
         //   });
       }
     }
+  };
+
+  const manageLoanLink = () => {
+    setShowLoan(true);
   };
 
   useEffect(() => {
@@ -65,30 +72,41 @@ const LoanStatus = () => {
       {loginStatus === "true" ? (
         <div>
           {gotData ? (
-            <table>
-              <thead>
-                <tr>
-                  <th>Loan Id</th>
-                  <th>Status</th>
-                  <th>Initial Loan Amount</th>
-                  <th>Number of installments</th>
-                  <th>Amount per installment</th>
-                  <th>Total amount left</th>
-                </tr>
-              </thead>
-              <tbody>
-                {dummyData.map((data, idx) => (
-                  <tr key={idx}>
-                    <td>{data.loan_id}</td>
-                    <td>{data.status}</td>
-                    <td>{data.initial_loan_amnt}</td>
-                    <td>{data.num_installments}</td>
-                    <td>{data.amt_per_installment}</td>
-                    <td>{data.total_amt_left}</td>
+            <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Manage</th>
+                    <th>Loan Id</th>
+                    <th>Status</th>
+                    <th>Initial Loan Amount</th>
+                    <th>Number of total installments</th>
+                    <th>Amount per installment</th>
+                    <th>Number of installments left</th>
+                    <th>Total amount left</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {dummyData.map((data, idx) => (
+                    <tr key={idx}>
+                      <button onClick={manageLoanLink}></button>
+                      <td>{data.loan_id}</td>
+                      <td>{data.status}</td>
+                      <td>{data.initial_loan_amnt}</td>
+                      <td>{data.num_installments}</td>
+                      <td>{data.amt_per_installment}</td>
+                      <td>{data.num_installments_left}</td>
+                      <td>{data.total_amt_left}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              {showLoan &&
+                <div>
+                  
+                </div>
+              }
+            </div>
           ) : (
             <h4>Loading...</h4>
           )}
