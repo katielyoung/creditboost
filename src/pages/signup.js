@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 
 // https://www.geeksforgeeks.org/how-to-develop-user-registration-form-in-reactjs/
 const Signup = () => {
   // States for registration
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [data, setData] = useState("");
   const [password, setPassword] = useState("");
 
   // States for checking the errors
@@ -30,6 +31,26 @@ const Signup = () => {
     setSubmitted(false);
   };
 
+  function getUserId() {
+    const url = `http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/users/4`;
+    fetch(url)
+      .then((response) => response.json())
+      .then((json) => {
+        setData(json);
+        console.log(url);
+        // for (let i = 0; i < json.length; i++) {
+        //   if (json[i].username === name) {
+        //     userId = json[i].idUser;
+        //   }
+        // }
+      });
+
+    if (data === "") {
+      return 8;
+    }
+    return data.idUser;
+  }
+
   // Handling the form submission
   let navigate = useNavigate();
   const handleSubmit = (e) => {
@@ -50,16 +71,27 @@ const Signup = () => {
           email: email,
         }),
       };
-      fetch("http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/users", requestOptions)
-      .then((response) => response.json());
-      // .then((data) => this.setState({ postId: data.id }));   // need response with userId
+      const userId = fetch(
+        "http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/users",
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((json) => {
+          // console.log(json);
+          return json.idUser;
+        });
       console.log("Submitting initial user registration!");
 
-      const userId = 2; // temporary until backend returns id
+      // const printUserId = () => {
+      //   userId.then((a) => {
+      //     console.log(a);
+      //   });
+      // };
+      // printUserId();
 
       // Set user (userId) from POST
       localStorage.setItem("user", userId);
-      localStorage.setItem("username", name)
+      localStorage.setItem("username", name);
 
       // Route change to create profile
       navigate("/create_profile");

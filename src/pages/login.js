@@ -6,16 +6,16 @@ import AuthContext from "./AuthContext";
 const Login = () => {
   // States for registration
   const { setLoginStatus } = useContext(AuthContext);
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
   // States for checking the errors
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
 
-  // Handling the email change
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
+  // Handling the name change
+  const handleName = (e) => {
+    setName(e.target.value);
     setSubmitted(false);
   };
 
@@ -25,33 +25,49 @@ const Login = () => {
     setSubmitted(false);
   };
 
+  function verifyCredentials() {
+    fetch("http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/users")
+      .then((response) => {
+        response.json();
+      })
+      .then((json) => {
+        console.log(json)
+        for (let i = 0; i < json.length; i++) {
+          if (json[i].username === name && json[i].password === password) {
+            localStorage.setItem("user", json[i].idUser);
+            return true;
+          }
+        }
+      });
+    return false;
+  }
+
   // Handling the form submission
   let navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (email === "" || password === "") {
+    if (name === "" || password === "") {
       setError(true);
     } else {
       setSubmitted(true);
       setError(false);
 
       // Verify user is in the database
-      const url = `http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/users/${email}`
-      // fetch(url);
-      // .then((response) => response.json())
-      // .then((data) => this.setState({ postId: data.id }));
+      if (verifyCredentials()) {
+        setLoginStatus("true");
+        console.log("Logging in!");
+      } else {
+        setLoginStatus("false");
+        console.log("Failed to log in!");
+        setError(true);
+      }
 
-      setLoginStatus("true");
-      console.log("Logging in!");
-
-      
-      // Set user (userId) from POST
-      const userId = 4; // temporary until backend returns id
-      localStorage.setItem("user", userId);
+      // setLoginStatus("true");
+      // console.log("Logging in!");
+      // localStorage.setItem("user", 4);
 
       // Route change to home
       navigate("/");
-
     }
   };
 
@@ -97,12 +113,12 @@ const Login = () => {
 
       <form>
         {/* Labels and inputs for form data */}
-        <label className="label">Email</label>
+        <label className="label">Username</label>
         <input
-          onChange={handleEmail}
+          onChange={handleName}
           className="input"
-          value={email}
-          type="email"
+          value={name}
+          type="text"
         />
 
         <label className="label">Password</label>

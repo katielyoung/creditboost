@@ -115,6 +115,7 @@ const CreateProfile = () => {
 
       // Get user Id
       const userId = localStorage.getItem('user') // TEMPORARY
+      console.log(userId);
   
       // Create new profile
       const requestOptions = {

@@ -2,19 +2,19 @@ import { useState, useEffect, useContext } from "react";
 import AuthContext from "./AuthContext";
 
 const Profile = () => {
-  const dummyData = {
-    first_name: "user",
-    last_name: "abc",
-    date_of_birth: "11-30-2000",
-    phone: "6504493399",
-    ssn: "123-222-2222",
-    ssn_last_four_digits: "2222",
-    bank_account: 332222221,
-    bank_routing: 1229211,
-    bank_name: "Bank1",
-    curr_credit_score: 600,
-    total_num_open_loan: 6000,
-  };
+  // const dummyData = {
+  //   first_name: "user",
+  //   last_name: "abc",
+  //   date_of_birth: "11-30-2000",
+  //   phone: "6504493399",
+  //   ssn: "123-222-2222",
+  //   ssn_last_four_digits: "2222",
+  //   bank_account: 332222221,
+  //   bank_routing: 1229211,
+  //   bank_name: "Bank1",
+  //   curr_credit_score: 600,
+  //   total_num_open_loan: 6000,
+  // };
 
   const { loginStatus } = useContext(AuthContext);
   const [data, setData] = useState("Loading...");
