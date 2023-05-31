@@ -21,7 +21,7 @@ const Profile = () => {
   const [gotData, setGotData] = useState(false);
 
   const getData = () => {
-    if (loginStatus) {
+    if (loginStatus && !gotData) {
       const userId = localStorage.getItem("user");
       console.log(`UserId = ${userId}`)
       if (userId != null) {

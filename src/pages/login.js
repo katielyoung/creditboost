@@ -58,16 +58,7 @@ const Login = () => {
           }
         });
       };
-      verifyCredentials();
-
-      
-
-      // setLoginStatus("true");
-      // console.log("Logging in!");
-      // localStorage.setItem("user", 4);
-
-      // Route change to home
-      
+      verifyCredentials();     
     }
   };
 
