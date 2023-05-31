@@ -21,7 +21,8 @@ const Navbar = () => {
           <NavMenu>
             <NavLink to="/">Home</NavLink>
             <NavLink to="/profile">Profile</NavLink>
-            <NavLink to="/loan_manage">Loan Management</NavLink>
+            <NavLink to="/loan_apply">Loan Application</NavLink>
+            <NavLink to="/loan_status">Loan Status</NavLink>
             <LogoutBtn onClick={logoutOp}>Logout</LogoutBtn>
           </NavMenu>
         ) : (

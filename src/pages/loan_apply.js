@@ -3,7 +3,7 @@ import AuthContext from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 
 // https://www.geeksforgeeks.org/how-to-develop-user-registration-form-in-reactjs/
-const LoanManage = () => {
+const LoanApply = () => {
   // States for registration
   const { loginStatus, setLoginStatus } = useContext(AuthContext);
   const [loanAmount, setLoanAmount] = useState("");
@@ -38,7 +38,7 @@ const LoanManage = () => {
       setSubmitted(true);
       setError(false);
 
-      // Create new user
+      // Create new loan application
       const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -87,7 +87,7 @@ const LoanManage = () => {
   return (
     <div className="loanmanage">
       <div>
-        <h1>User Registration</h1>
+        <h1>Apply for a Loan!</h1>
       </div>
       {loginStatus === "true" ? (
         <div>
@@ -129,4 +129,4 @@ const LoanManage = () => {
   );
 };
 
-export default LoanManage;
+export default LoanApply;

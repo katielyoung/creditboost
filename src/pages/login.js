@@ -37,7 +37,7 @@ const Login = () => {
 
       // Verify user is in the database
       const url = `http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/users/${email}`
-      // fetch("http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/users", requestOptions);
+      // fetch(url);
       // .then((response) => response.json())
       // .then((data) => this.setState({ postId: data.id }));
 

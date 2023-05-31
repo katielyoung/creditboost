@@ -42,7 +42,7 @@
   height: 100vh;
 }
 
-h1, h2, h3, h4, p {
+h1, h2, h3, h4, p, th, td {
   color: white;
 }
 
@@ -122,4 +122,21 @@ h1, h2, h3, h4, p {
 .loanmanage {
   margin: auto;
   padding: 20px;
+}
+
+.loanstatus {
+  margin: auto;
+  padding: 20px;
+}
+
+table { 
+  border-collapse: collapse; 
+}
+tr:nth-child(1) { 
+  border-top: 1px solid rgb(82, 78, 78); 
+  border-bottom: 1px solid rgb(82, 78, 78);
+}
+th,td {
+  margin: auto;
+  padding: 10px;
 }
