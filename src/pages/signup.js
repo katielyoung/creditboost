@@ -82,15 +82,14 @@ const Signup = () => {
         });
       console.log("Submitting initial user registration!");
 
-      // const printUserId = () => {
-      //   userId.then((a) => {
-      //     console.log(a);
-      //   });
-      // };
-      // printUserId();
-
-      // Set user (userId) from POST
-      localStorage.setItem("user", userId);
+      // Set the user ID
+      const setUserId = () => {
+        userId.then((a) => {
+          localStorage.setItem("user", a);
+          console.log(a);
+        });
+      };
+      setUserId();
       localStorage.setItem("username", name);
 
       // Route change to create profile

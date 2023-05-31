@@ -137,9 +137,8 @@ const CreateProfile = () => {
         }),
       };
       console.log(requestOptions)
-      // fetch("http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/profiles", requestOptions);
-      // .then((response) => response.json())
-      // .then((data) => this.setState({ postId: data.id }));
+      fetch("http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/profiles", requestOptions)
+      .then((response) => response.json());
       console.log("Submitting profile!");
 
       // Navigate to created profile!

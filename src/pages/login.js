@@ -5,7 +5,7 @@ import AuthContext from "./AuthContext";
 // https://www.geeksforgeeks.org/how-to-develop-user-registration-form-in-reactjs/
 const Login = () => {
   // States for registration
-  const { setLoginStatus } = useContext(AuthContext);
+  const { loginStatus, setLoginStatus } = useContext(AuthContext);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -31,7 +31,7 @@ const Login = () => {
         response.json();
       })
       .then((json) => {
-        console.log(json)
+        console.log(json);
         for (let i = 0; i < json.length; i++) {
           if (json[i].username === name && json[i].password === password) {
             localStorage.setItem("user", json[i].idUser);
@@ -49,25 +49,48 @@ const Login = () => {
     if (name === "" || password === "") {
       setError(true);
     } else {
-      setSubmitted(true);
-      setError(false);
-
       // Verify user is in the database
-      if (verifyCredentials()) {
-        setLoginStatus("true");
-        console.log("Logging in!");
-      } else {
-        setLoginStatus("false");
-        console.log("Failed to log in!");
-        setError(true);
-      }
+      const users = fetch(
+        "http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/users"
+      )
+        .then((response) => response.json())
+        .then((json) => {
+          // console.log(json);
+          return json;
+        });
+
+      var foundUser = false;
+      const verifyCredentials = () => {
+        users.then((a) => {
+          localStorage.setItem("user", a);
+          for (let i = 0; i < a.length; i++) {
+            if (a[i].username === name && a[i].password === password) {
+              foundUser = true;
+              localStorage.setItem("user", a[i].idUser);
+              console.log("Logging in!");
+            }
+          }
+          if (foundUser) {
+            setLoginStatus("true");
+            setError(false);
+            setSubmitted(true);
+            navigate("/");
+          } else {
+            console.log("Failed to log in!");
+            setError(true);
+          }
+        });
+      };
+      verifyCredentials();
+
+      
 
       // setLoginStatus("true");
       // console.log("Logging in!");
       // localStorage.setItem("user", 4);
 
       // Route change to home
-      navigate("/");
+      
     }
   };
 
@@ -94,7 +117,7 @@ const Login = () => {
           display: error ? "" : "none",
         }}
       >
-        <h1>Please enter all the fields</h1>
+        <h1>Login Failed!</h1>
       </div>
     );
   };
