@@ -33,6 +33,7 @@ const Login = () => {
       setError(true);
     } else {
       // Verify user is in the database
+      var noError = true;
       const users = fetch(
         `http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/users/username?username=${name}`
       )
@@ -40,25 +41,32 @@ const Login = () => {
         .then((json) => {
           // console.log(json);
           return json;
+        })
+        .catch((error) => {
+          console.log("Failed to log in!");
+          setError(true);
+          noError = false;
         });
 
       // var foundUser = false;
       const verifyCredentials = () => {
         users.then((a) => {
-          if (a.password === password) {
-            console.log("Logging in!");
-            setLoginStatus("true");
-            localStorage.setItem("user", a.idUser);
-            setError(false);
-            setSubmitted(true);
-            navigate("/");
-          } else {
-            console.log("Failed to log in!");
-            setError(true);
+          if (noError) {
+            if (a.password === password) {
+              console.log("Logging in!");
+              setLoginStatus("true");
+              localStorage.setItem("user", a.idUser);
+              setError(false);
+              setSubmitted(true);
+              navigate("/");
+            } else {
+              console.log("Failed to log in!");
+              setError(true);
+            }
           }
         });
       };
-      verifyCredentials();     
+      verifyCredentials();
     }
   };
 
