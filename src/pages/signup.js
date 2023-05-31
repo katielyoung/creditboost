@@ -31,26 +31,6 @@ const Signup = () => {
     setSubmitted(false);
   };
 
-  function getUserId() {
-    const url = `http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/users/4`;
-    fetch(url)
-      .then((response) => response.json())
-      .then((json) => {
-        setData(json);
-        console.log(url);
-        // for (let i = 0; i < json.length; i++) {
-        //   if (json[i].username === name) {
-        //     userId = json[i].idUser;
-        //   }
-        // }
-      });
-
-    if (data === "") {
-      return 8;
-    }
-    return data.idUser;
-  }
-
   // Handling the form submission
   let navigate = useNavigate();
   const handleSubmit = (e) => {

@@ -25,7 +25,7 @@ const Profile = () => {
       const userId = localStorage.getItem("user");
       console.log(`UserId = ${userId}`)
       if (userId != null) {
-        const url = `http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/profiles/${userId}`;
+        const url = `http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/profiles/id?idUser=${userId}`;
         fetch(url)
           .then((response) => response.json())
           .then((json) => {

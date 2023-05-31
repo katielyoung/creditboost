@@ -25,23 +25,6 @@ const Login = () => {
     setSubmitted(false);
   };
 
-  function verifyCredentials() {
-    fetch("http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/users")
-      .then((response) => {
-        response.json();
-      })
-      .then((json) => {
-        console.log(json);
-        for (let i = 0; i < json.length; i++) {
-          if (json[i].username === name && json[i].password === password) {
-            localStorage.setItem("user", json[i].idUser);
-            return true;
-          }
-        }
-      });
-    return false;
-  }
-
   // Handling the form submission
   let navigate = useNavigate();
   const handleSubmit = (e) => {
@@ -51,7 +34,7 @@ const Login = () => {
     } else {
       // Verify user is in the database
       const users = fetch(
-        "http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/users"
+        `http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/users/username?username=${name}`
       )
         .then((response) => response.json())
         .then((json) => {
@@ -59,19 +42,13 @@ const Login = () => {
           return json;
         });
 
-      var foundUser = false;
+      // var foundUser = false;
       const verifyCredentials = () => {
         users.then((a) => {
-          localStorage.setItem("user", a);
-          for (let i = 0; i < a.length; i++) {
-            if (a[i].username === name && a[i].password === password) {
-              foundUser = true;
-              localStorage.setItem("user", a[i].idUser);
-              console.log("Logging in!");
-            }
-          }
-          if (foundUser) {
+          if (a.password === password) {
+            console.log("Logging in!");
             setLoginStatus("true");
+            localStorage.setItem("user", a.idUser);
             setError(false);
             setSubmitted(true);
             navigate("/");
