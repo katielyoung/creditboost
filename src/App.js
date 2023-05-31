@@ -8,6 +8,7 @@ import Profile from "./pages/profile";
 import LoanManage from "./pages/loan_manage";
 import Signup from "./pages/signup";
 import Login from "./pages/login";
+import CreateProfile from "./pages/create_profile";
 
 function App() {
   return (
@@ -18,8 +19,9 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/loan_manage" element={<LoanManage />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/signup/*" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/create_profile" element={<CreateProfile />} />
         </Routes>
       </Router>
     </div>

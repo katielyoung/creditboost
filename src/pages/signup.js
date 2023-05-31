@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // https://www.geeksforgeeks.org/how-to-develop-user-registration-form-in-reactjs/
 const Signup = () => {
@@ -30,6 +31,7 @@ const Signup = () => {
   };
 
   // Handling the form submission
+  let navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     if (name === "" || email === "" || password === "") {
@@ -49,14 +51,17 @@ const Signup = () => {
         }),
       };
       // fetch("ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/users", requestOptions);
-        // .then((response) => response.json())
-        // .then((data) => this.setState({ postId: data.id }));
-      console.log("Submitting initial user registration!")
+      // .then((response) => response.json())
+      // .then((data) => this.setState({ postId: data.id }));
+      console.log("Submitting initial user registration!");
 
       const userId = 2; // temporary until backend returns id
 
       // Set user (userId) from POST
       localStorage.setItem("user", userId);
+
+      // Route change to create profile
+      navigate("/create_profile");
     }
   };
 
@@ -89,48 +94,48 @@ const Signup = () => {
   };
 
   return (
-    <div className="regform">
-      <div>
-        <h1>User Registration</h1>
+      <div className="regform">
+        <div>
+          <h1>User Registration</h1>
+        </div>
+
+        {/* Calling to the methods */}
+        <div className="messages">
+          {errorMessage()}
+          {successMessage()}
+        </div>
+
+        <form>
+          {/* Labels and inputs for form data */}
+          <label className="label">Username</label>
+          <input
+            onChange={handleName}
+            className="input"
+            value={name}
+            type="text"
+          />
+
+          <label className="label">Email</label>
+          <input
+            onChange={handleEmail}
+            className="input"
+            value={email}
+            type="email"
+          />
+
+          <label className="label">Password</label>
+          <input
+            onChange={handlePassword}
+            className="input"
+            value={password}
+            type="password"
+          />
+
+          <button onClick={handleSubmit} className="btn" type="submit">
+            Submit
+          </button>
+        </form>
       </div>
-
-      {/* Calling to the methods */}
-      <div className="messages">
-        {errorMessage()}
-        {successMessage()}
-      </div>
-
-      <form>
-        {/* Labels and inputs for form data */}
-        <label className="label">Username</label>
-        <input
-          onChange={handleName}
-          className="input"
-          value={name}
-          type="text"
-        />
-
-        <label className="label">Email</label>
-        <input
-          onChange={handleEmail}
-          className="input"
-          value={email}
-          type="email"
-        />
-
-        <label className="label">Password</label>
-        <input
-          onChange={handlePassword}
-          className="input"
-          value={password}
-          type="password"
-        />
-
-        <button onClick={handleSubmit} className="btn" type="submit">
-          Submit
-        </button>
-      </form>
-    </div>
   );
 };
 
