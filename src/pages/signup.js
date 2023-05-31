@@ -50,9 +50,9 @@ const Signup = () => {
           email: email,
         }),
       };
-      // fetch("http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/users", requestOptions);
-      // .then((response) => response.json())
-      // .then((data) => this.setState({ postId: data.id }));
+      fetch("http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/users", requestOptions)
+      .then((response) => response.json());
+      // .then((data) => this.setState({ postId: data.id }));   // need response with userId
       console.log("Submitting initial user registration!");
 
       const userId = 2; // temporary until backend returns id

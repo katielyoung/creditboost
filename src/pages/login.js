@@ -5,7 +5,7 @@ import AuthContext from "./AuthContext";
 // https://www.geeksforgeeks.org/how-to-develop-user-registration-form-in-reactjs/
 const Login = () => {
   // States for registration
-  const { loginStatus, setLoginStatus } = useContext(AuthContext);
+  const { setLoginStatus } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 

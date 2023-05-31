@@ -16,7 +16,7 @@ const Profile = () => {
     total_num_open_loan: 6000,
   };
 
-  const { loginStatus, setLoginStatus } = useContext(AuthContext);
+  const { loginStatus } = useContext(AuthContext);
   const [data, setData] = useState("Loading...");
   const [gotData, setGotData] = useState(false);
 
@@ -40,7 +40,7 @@ const Profile = () => {
 
   useEffect(() => {
     getData();
-  }, []);
+  });
 
   window.addEventListener("beforeunload", (event) => {
     getData();

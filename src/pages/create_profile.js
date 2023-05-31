@@ -77,12 +77,16 @@ const CreateProfile = () => {
   };
 
   const handleBankAccount = (e) => {
-    setBankAccount(e.target.value);
+    const numStr = e.target.value;
+    const numInt = parseInt(numStr, 10);
+    setBankAccount(numInt);
     setSubmitted(false);
   };
 
   const handleBankRouting = (e) => {
-    setBankRouting(e.target.value);
+    const numStr = e.target.value;
+    const numInt = parseInt(numStr, 10);
+    setBankRouting(numInt);
     setSubmitted(false);
   };
 
@@ -110,14 +114,14 @@ const CreateProfile = () => {
       setError(false);
 
       // Get user Id
-      const userId = localStorage.getItem('user')
-
+      const userId = localStorage.getItem('user') // TEMPORARY
+  
       // Create new profile
       const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          idProfile :  userId,
+          idUser :  userId,
           first_name :  firstName,
           last_name :  lastName,
           date_of_birth :  dateOfBirth,
@@ -131,6 +135,7 @@ const CreateProfile = () => {
           total_num_open_loan : 0
         }),
       };
+      console.log(requestOptions)
       // fetch("http://ec2-44-203-197-80.compute-1.amazonaws.com:8080/api/profiles", requestOptions);
       // .then((response) => response.json())
       // .then((data) => this.setState({ postId: data.id }));

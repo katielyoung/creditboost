@@ -1,11 +1,11 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import AuthContext from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 
 // https://www.geeksforgeeks.org/how-to-develop-user-registration-form-in-reactjs/
 const LoanApply = () => {
   // States for registration
-  const { loginStatus, setLoginStatus } = useContext(AuthContext);
+  const { loginStatus } = useContext(AuthContext);
   const [loanAmount, setLoanAmount] = useState("");
   const [numInstallments, setNumInstallments] = useState("");
 
@@ -30,6 +30,7 @@ const LoanApply = () => {
   };
 
   // Handling the form submission
+  let navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     if (loanAmount === "" || numInstallments === "") {
@@ -51,6 +52,8 @@ const LoanApply = () => {
       // .then((response) => response.json())
       // .then((data) => this.setState({ postId: data.id }));
       console.log("Submitting loan application!");
+
+      navigate("/loan_status");
     }
   };
 
